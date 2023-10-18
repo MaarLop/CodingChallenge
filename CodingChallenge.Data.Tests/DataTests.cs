@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CodingChallenge.Data.Classes;
 using CodingChallenge.Data.Classes.Shapes;
 using CodingChallenge.Data.Enums;
@@ -114,12 +115,77 @@ namespace CodingChallenge.Data.Tests
                 "<h1>Reporte de Formas</h1>2 Cuadrados | Área 29 | Perímetro 28 <br/>2 Círculos | Área 13,01 | Perímetro 18,06 <br/>3 Triángulos | Área 49,64 | Perímetro 51,6 <br/>TOTAL:<br/>7 formas Perímetro 97,66 Área 91,65";
             Assert.AreEqual(expected, report);
         }
+
+        [TestCase]
+        public void TestReportWithASingleTrapeze()
+        {
+            var trapezes = new List<GeometricShape> { ShapeFactory.CreateShape(Shape.Trapeze, 5, 1, 2) };
+
+            LanguageHelper.SetSpanish();
+
+            var report = _report.GenerateReport(trapezes);
+
+            var expected = "<h1>Reporte de Formas</h1>1 Trapecio | Área 7,5 | Perímetro 103,5 <br/>TOTAL:<br/>1 forma Perímetro 103,5 Área 7,5";
+            Assert.AreEqual(expected, report);
+        }
+
+        [TestCase]
+        public void TestReportWithTwoTrapezes()
+        {
+            var trapezes = new List<GeometricShape>
+            {
+                ShapeFactory.CreateShape(Shape.Trapeze, 5, 1, 2),
+                ShapeFactory.CreateShape(Shape.Trapeze, 5, 1, 2)
+            };
+
+            LanguageHelper.SetSpanish();
+
+            var report = _report.GenerateReport(trapezes);
+
+            var expected = "<h1>Reporte de Formas</h1>2 Trapecios | Área 15 | Perímetro 207 <br/>TOTAL:<br/>2 formas Perímetro 207 Área 15";
+            Assert.AreEqual(expected, report);
+        }
+
+        [TestCase]
+        public void TestReportWithASingleRectangle()
+        {
+            var rectangles = new List<GeometricShape> { ShapeFactory.CreateShape(Shape.Rectangle, 5, 1) };
+
+            LanguageHelper.SetSpanish();
+
+            var report = _report.GenerateReport(rectangles);
+
+            var expected = "<h1>Reporte de Formas</h1>1 Rectángulo | Área 5 | Perímetro 12 <br/>TOTAL:<br/>1 forma Perímetro 12 Área 5";
+            Assert.AreEqual(expected, report);
+        }
+
+        [TestCase]
+        public void TestReportWithTwoRectangle()
+        {
+            var rectangles = new List<GeometricShape>
+            {
+                ShapeFactory.CreateShape(Shape.Rectangle, 5, 1),
+                ShapeFactory.CreateShape(Shape.Rectangle, 5, 1)
+            };
+
+            LanguageHelper.SetSpanish();
+
+            var report = _report.GenerateReport(rectangles);
+
+            var expected = "<h1>Reporte de Formas</h1>2 Rectángulos | Área 10 | Perímetro 24 <br/>TOTAL:<br/>2 formas Perímetro 24 Área 10";
+            Assert.AreEqual(expected, report);
+        }
+
+        [Test]
+        [TestCase(-1, Shape.Square)]
+        [TestCase(0, Shape.EquilateralTriangle)]
+        [TestCase(3, Shape.Rectangle)]
+        public void TestInvalidInputs(int size, Shape shape)
+        {
+            Assert.Throws<ArgumentException>(() => ShapeFactory.CreateShape(shape, size));
+        }
     }
 
     //TODO:
-    //Ver que pasan con el trapecio y el rectangulo
-    //Refactorizar la clase de report (quizas un poco mas)
     //Volver a dejar los csporj como estaban
-    //Probar los validadores
-    //cambiar nombre a las carpetas
 }
