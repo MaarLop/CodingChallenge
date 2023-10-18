@@ -1,5 +1,6 @@
 ﻿using System;
-using CodingChallenge.Data.Recursos;
+using CodingChallenge.Data.Helpers;
+using CodingChallenge.Data.Resource;
 using CodingChallenge.Guards;
 
 namespace CodingChallenge.Data.Classes.Shapes
@@ -13,6 +14,7 @@ namespace CodingChallenge.Data.Classes.Shapes
         {
             Guard.Against.NegativeOrZero(minorBase, ResX.Side_of_a_shape_must_be_positive);
             Guard.Against.NegativeOrZero(majorBase, ResX.Side_of_a_shape_must_be_positive);
+            Guard.Against.GreaterOrEqualsThan(minorBase, majorBase, ResX.MinorValueMustnTBeGreaterThanMajorValue);
             MajorBase = majorBase;
             MinorBase = minorBase;
         }
