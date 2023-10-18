@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,54 +118,72 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="EmptyListOfShapes" xml:space="preserve">
-    <value>Lista vacía de formas!</value>
+    <value>Empty list of shapes!</value>
   </data>
   <data name="ShapesReport" xml:space="preserve">
-    <value>Reporte de Formas</value>
+    <value>Shapes report</value>
   </data>
   <data name="Shapes" xml:space="preserve">
-    <value>Formas</value>
+    <value>shapes</value>
   </data>
   <data name="Perimeter" xml:space="preserve">
-    <value>Perímetro</value>
+    <value>Perimeter</value>
   </data>
   <data name="Area" xml:space="preserve">
-    <value>Área</value>
+    <value>Area</value>
   </data>
   <data name="Culture" xml:space="preserve">
-    <value>es-ES</value>
+    <value>en-US</value>
   </data>
-  <data name="Squares" xml:space="preserve">
-    <value>Cuadrados</value>
+  <data name="Square_plural" xml:space="preserve">
+    <value>Squares</value>
   </data>
   <data name="Square" xml:space="preserve">
-    <value>Cuadrado</value>
+    <value>Square</value>
   </data>
-  <data name="Circles" xml:space="preserve">
-    <value>Círculos</value>
+  <data name="Circle_plural" xml:space="preserve">
+    <value>Circles</value>
   </data>
   <data name="Circle" xml:space="preserve">
-    <value>Círculo</value>
+    <value>Circle</value>
   </data>
-  <data name="Triangles" xml:space="preserve">
-    <value>Triángulos</value>
+  <data name="EquilateralTriangle_plural" xml:space="preserve">
+    <value>Triangles</value>
   </data>
-  <data name="Triangle" xml:space="preserve">
-    <value>Triángulo</value>
+  <data name="EquilateralTriangle" xml:space="preserve">
+    <value>EquilateralTriangle</value>
   </data>
   <data name="TOTAL" xml:space="preserve">
     <value>TOTAL</value>
   </data>
   <data name="InvalidEnumValueForShape" xml:space="preserve">
-    <value>Valor inválido para forma geométrica</value>
+    <value>Invalid value for geometric shape</value>
   </data>
   <data name="Shape_lowercase" xml:space="preserve">
-    <value>forma</value>
+    <value>shape</value>
   </data>
   <data name="Shapes_lowercase" xml:space="preserve">
-    <value>formas</value>
+    <value>shapes</value>
   </data>
   <data name="Side_of_a_shape_must_be_positive" xml:space="preserve">
-    <value>El lado de una figura debe ser positivo</value>
+    <value>Side of a shape must be positive</value>
+  </data>
+  <data name="ShapesCanTBeNull" xml:space="preserve">
+    <value>Shapes can't be null</value>
+  </data>
+  <data name="MinorValueMustnTBeGreaterThanMajorValue" xml:space="preserve">
+    <value>Minor value mustn't be greater than major value</value>
+  </data>
+  <data name="Trapeze" xml:space="preserve">
+    <value>Trapeze</value>
+  </data>
+  <data name="Trapeze_plural" xml:space="preserve">
+    <value>Trapezes</value>
+  </data>
+  <data name="Rectangle" xml:space="preserve">
+    <value>Rectangle</value>
+  </data>
+  <data name="Rectangle_plural" xml:space="preserve">
+    <value>Rectangles</value>
   </data>
 </root>

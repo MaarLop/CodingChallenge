@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CodingChallenge.Data.Recursos {
+namespace CodingChallenge.Data.Resource {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace CodingChallenge.Data.Recursos {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CodingChallenge.Data.Recursos.ResX", typeof(ResX).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CodingChallenge.Data.Resource.ResX", typeof(ResX).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -81,9 +81,9 @@ namespace CodingChallenge.Data.Recursos {
         /// <summary>
         ///   Looks up a localized string similar to Circles.
         /// </summary>
-        internal static string Circles {
+        internal static string Circle_plural {
             get {
-                return ResourceManager.GetString("Circles", resourceCulture);
+                return ResourceManager.GetString("Circle_plural", resourceCulture);
             }
         }
         
@@ -97,6 +97,24 @@ namespace CodingChallenge.Data.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to EquilateralTriangle.
+        /// </summary>
+        internal static string EquilateralTriangle {
+            get {
+                return ResourceManager.GetString("EquilateralTriangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Triangles.
+        /// </summary>
+        internal static string EquilateralTriangle_plural {
+            get {
+                return ResourceManager.GetString("EquilateralTriangle_plural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid value for geometric shape.
         /// </summary>
         internal static string InvalidEnumValueForShape {
@@ -106,11 +124,38 @@ namespace CodingChallenge.Data.Recursos {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Minor value mustn&apos;t be greater than major value.
+        /// </summary>
+        internal static string MinorValueMustnTBeGreaterThanMajorValue {
+            get {
+                return ResourceManager.GetString("MinorValueMustnTBeGreaterThanMajorValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Perimeter.
         /// </summary>
         internal static string Perimeter {
             get {
                 return ResourceManager.GetString("Perimeter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rectangle.
+        /// </summary>
+        internal static string Rectangle {
+            get {
+                return ResourceManager.GetString("Rectangle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rectangles.
+        /// </summary>
+        internal static string Rectangle_plural {
+            get {
+                return ResourceManager.GetString("Rectangle_plural", resourceCulture);
             }
         }
         
@@ -138,6 +183,15 @@ namespace CodingChallenge.Data.Recursos {
         internal static string Shapes_lowercase {
             get {
                 return ResourceManager.GetString("Shapes_lowercase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shapes can&apos;t be null.
+        /// </summary>
+        internal static string ShapesCanTBeNull {
+            get {
+                return ResourceManager.GetString("ShapesCanTBeNull", resourceCulture);
             }
         }
         
@@ -171,9 +225,9 @@ namespace CodingChallenge.Data.Recursos {
         /// <summary>
         ///   Looks up a localized string similar to Squares.
         /// </summary>
-        internal static string Squares {
+        internal static string Square_plural {
             get {
-                return ResourceManager.GetString("Squares", resourceCulture);
+                return ResourceManager.GetString("Square_plural", resourceCulture);
             }
         }
         
@@ -187,20 +241,20 @@ namespace CodingChallenge.Data.Recursos {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EquilateralTriangle.
+        ///   Looks up a localized string similar to Trapeze.
         /// </summary>
-        internal static string Triangle {
+        internal static string Trapeze {
             get {
-                return ResourceManager.GetString("Triangle", resourceCulture);
+                return ResourceManager.GetString("Trapeze", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Triangles.
+        ///   Looks up a localized string similar to Trapezes.
         /// </summary>
-        internal static string Triangles {
+        internal static string Trapeze_plural {
             get {
-                return ResourceManager.GetString("Triangles", resourceCulture);
+                return ResourceManager.GetString("Trapeze_plural", resourceCulture);
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using CodingChallenge.Data.Recursos;
+﻿using CodingChallenge.Data.Helpers;
+using CodingChallenge.Data.Resource;
 using CodingChallenge.Guards;
 
 namespace CodingChallenge.Data.Classes.Shapes
