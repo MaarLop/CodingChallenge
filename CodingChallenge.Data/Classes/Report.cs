@@ -1,46 +1,45 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using CodingChallenge.Data.Classes.Shapes;
-using CodingChallenge.Data.Recursos;
+using CodingChallenge.Data.Helpers;
+using CodingChallenge.Data.Resource;
+using CodingChallenge.Guards;
 
 namespace CodingChallenge.Data.Classes
 {
     public class Report
     {
+        private readonly ResourceManager _resourceManager;
+
+        public Report()
+        {
+            _resourceManager = new ResourceManager("CodingChallenge.Data.Resource.ResX", typeof(ResX).Assembly);
+        }
+
         public string GenerateReport(List<GeometricShape> shapes)
         {
             var sb = new StringBuilder();
 
+            Guard.Against.IsNull(shapes, ResX.ShapesCanTBeNull);
+
             GenerateReportHeader(shapes, sb);
 
-            int amountOfSquares = 0, amountOfCircles = 0, amountOfTriangles = 0;
-
-            decimal squareAreas = 0m, circleAreas = 0m, triangleAreas = 0m;
-
-            decimal squarePerimeters = 0m, circlePerimeters = 0m, trianglePerimeters = 0m;
-
-            shapes.ForEach(shape =>
-            {
-                //no me gusta repetir lineas
-                if (shape is Square)
+            var reportList = shapes.GroupBy(x => x.GetType())
+                .Select(group => new ReportShape
                 {
-                    IncreaseValues(ref amountOfSquares, shape, ref squareAreas, ref squarePerimeters);
-                }
-                if (shape is Circle)
-                {
-                    IncreaseValues(ref amountOfCircles, shape, ref circleAreas, ref circlePerimeters);
-                }
-                if (shape is EquilateralTriangle)
-                {
-                    IncreaseValues(ref amountOfTriangles, shape, ref triangleAreas, ref trianglePerimeters);
-                }
-            });
+                    Type = group.Key,
+                    Amount = group.Count(),
+                    Area = group.ToList().Sum(s => s.CalculateArea()),
+                    Perimeter = group.ToList().Sum(t => t.CalculatePerimeter())
+                })
+                .ToList();
 
-            GenerateReportBody(sb, amountOfSquares, squareAreas, squarePerimeters, amountOfCircles, circleAreas, circlePerimeters, amountOfTriangles, triangleAreas, trianglePerimeters);
+            GenerateReportBody(sb, reportList);
 
-            GenerateReportFooter(sb, amountOfSquares + amountOfCircles + amountOfTriangles,
-                squarePerimeters + trianglePerimeters + circlePerimeters, squareAreas + circleAreas + triangleAreas);
+            GenerateReportFooter(sb, reportList);
 
             return sb.ToString();
         }
@@ -50,10 +49,14 @@ namespace CodingChallenge.Data.Classes
             sb.Append(shapes.Any() ? $"<h1>{ResX.ShapesReport}</h1>" : $"<h1>{ResX.EmptyListOfShapes}</h1>");
         }
 
-        private static void GenerateReportFooter(StringBuilder sb, int amountOfShapes, decimal perimeters, decimal areas)
+        private static void GenerateReportFooter(StringBuilder sb, List<ReportShape> reports)
         {
-            if (amountOfShapes > 0)
+            if (reports != null && reports.Any())
             {
+                var amountOfShapes = reports.Sum(x => x.Amount);
+                var perimeters = reports.Sum(x => x.Perimeter);
+                var areas = reports.Sum(x => x.Area);
+
                 sb.Append($"{ResX.TOTAL}:<br/>");
                 sb.Append($"{amountOfShapes} {GetPluralOrSingular(amountOfShapes, ResX.Shapes_lowercase, ResX.Shape_lowercase)} ");
                 sb.Append($"{ResX.Perimeter} {perimeters.ToString("#.##", ResX.Culture)} ");
@@ -66,28 +69,15 @@ namespace CodingChallenge.Data.Classes
             return amountOfShapes == 1 ? singularNoun : pluralNoun;
         }
 
-        private void GenerateReportBody(StringBuilder sb, int amountOfSquares, decimal squareAreas, decimal squarePerimeters,
-            int amountOfCircles, decimal circleAreas, decimal circlePerimeters, int amountOfTriangles, decimal triangleAreas,
-            decimal trianglePerimeters)
+        private void GenerateReportBody(StringBuilder sb, List<ReportShape> reports)
         {
-            //no me gusta repetir lineas
-
-            sb.Append(WriteLine(amountOfSquares, squareAreas, squarePerimeters,
-                GetPluralOrSingular(amountOfSquares, ResX.Squares, ResX.Square)));
-
-            sb.Append(WriteLine(amountOfCircles, circleAreas, circlePerimeters,
-                GetPluralOrSingular(amountOfCircles, ResX.Circles, ResX.Circle)));
-
-            sb.Append(WriteLine(amountOfTriangles, triangleAreas, trianglePerimeters,
-                GetPluralOrSingular(amountOfTriangles, ResX.Triangles, ResX.Triangle)));
-        }
-
-        private void IncreaseValues(ref int amountOfSquares, GeometricShape shape, ref decimal squareAreas,
-            ref decimal squarePerimeters)
-        {
-            amountOfSquares++;
-            squareAreas += shape.CalculateArea();
-            squarePerimeters += shape.CalculatePerimeter();
+            reports.ForEach(x =>
+            {
+                var type = GetPluralOrSingular(x.Amount,
+                    _resourceManager.GetString($"{x.Type.Name}_plural", CultureInfo.CurrentUICulture),
+                    _resourceManager.GetString(x.Type.Name, CultureInfo.CurrentUICulture));
+                sb.Append(WriteLine(x.Amount, x.Area, x.Perimeter, type));
+            });
         }
 
         private string WriteLine(int amount, decimal area, decimal perimeter, string type)
