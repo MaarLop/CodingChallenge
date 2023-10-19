@@ -5,9 +5,7 @@ using CodingChallenge.Data.Classes.Shapes;
 using CodingChallenge.Data.Enums;
 using CodingChallenge.Data.Factories;
 using CodingChallenge.Data.Helpers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
-using Assert = NUnit.Framework.Assert;
 
 namespace CodingChallenge.Data.Tests
 {
@@ -15,11 +13,6 @@ namespace CodingChallenge.Data.Tests
     public class DataTests
     {
         private readonly Report _report = new Report();
-
-        [TestInitialize]
-        public void Before()
-        {
-        }
 
         [TestCase]
         public void TestEmptyListInSpanish()
@@ -185,7 +178,4 @@ namespace CodingChallenge.Data.Tests
             Assert.Throws<ArgumentException>(() => ShapeFactory.CreateShape(shape, size));
         }
     }
-
-    //TODO:
-    //Volver a dejar los csporj como estaban
 }
