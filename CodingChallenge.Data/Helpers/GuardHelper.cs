@@ -12,7 +12,7 @@ namespace CodingChallenge.Data.Helpers
 
         public static T IsNull<T>(this IGuardClause _, T value, string message)
         {
-            return value is null ? throw new ArgumentException(message) : value;
+            return value == null ? throw new ArgumentException(message) : value;
         }
 
         public static decimal GreaterOrEqualsThan(this IGuardClause _, decimal minorValue, decimal majorValue, string message)
